@@ -1,0 +1,181 @@
+:: StoryTitle
+PC
+
+
+:: StoryData
+{
+  "ifid": "215EB356-54BF-494F-902C-2E61D4767EF7",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "START",
+  "tag-colors": {
+    "no-undo": "red"
+  },
+  "zoom": 1
+}
+
+
+:: CRYOBED [no-undo] {"position":"450,275","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# CRYOBED
+
+You wake up in (if: $day_num > 0)[your](else:)[a] cryobed
+
+
+Pick up your [[Diary]] 
+Go to the [[Oval Office]] 
+Go to Sleep (click: "Sleep")[(set: num-type $day_num to  $day_num + 1,  $bed_visits = 0)(goto:'CRYOBED')]
+
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: Dark Web {"position":"450,450","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# DARK WEB
+
+
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: Desk Drawer {"position":"575,575","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# DESK DRAWER
+
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: Diary {"position":"250,400","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# DIARY
+
+Open [[TODAY]]'s entry
+(if: $day_num > 0)[Open [[YESTERDAY]]'s entry]
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: Message_1 {"position":"400,600","size":"100,100"}
+(font: "Courier New")+(border: "inset")+(css:"padding:20px")[
+    i should have that dedicated ARK-day EB-way terminal you asked for set up in the OO by day 5 at the latest, sir. have fun!  🫡  -p
+    
+]
+
+
+:: Oval Office {"position":"575,325","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# OVAL OFFICE
+
+(font: "Courier New")[New Memos]
+(if: $day_num < 5)[(display: "Message_1")]
+
+
+Pick up the [[Phone]] 
+Open [[White House Map]] 
+Open [[Desk Drawer]]
+(if: $day_num > 4)[Enter the [[Dark Web]]] 
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: Phone {"position":"700,450","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# PHONE
+
+[Dial 911]
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: START {"position":"525,725","size":"100,100"}
+# PRESIDENT CORPSE
+
+[[WAKE UP->CRYOBED]]
+
+
+:: TODAY {"position":"250,525","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# DIARY
+(font: "cursive")+(border: "inset")+(box:"X")+(css:"padding:20px")[
+
+  ## ''Day $day_num''
+  
+
+   
+]
+
+[Write about today's events]
+[Write about your feelings]
+
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: White House Map {"position":"575,450","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# YOU OPEN THE WHITE HOUSE MAP
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: YESTERDAY {"position":"125,525","size":"100,100"}
+PRESIDENT CORPSE DAY $day_num
+
+# DIARY
+(font: "cursive")+(border: "inset")+(box:"X")+(css:"padding:20px")[
+
+  ## ''Day (print: $day_num - 1)''
+  
+  Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+   
+]
+
+
+
+(if: $day_num > 0)+
+(size:0.5)[RESTART FROM DAY 0]
+(click:"RESTART FROM DAY 0")[(restart:)]
+
+
+:: StoryStylesheet [stylesheet]
+tw-story {
+  /* background: plum;
+  color: black; */
+}
+
+tw-passage[tags~="no-undo"] tw-sidebar > tw-icon {
+    display: none;
+}
