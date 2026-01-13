@@ -7,6 +7,7 @@ const format = 'harlowe/3.3.9';
 const files  = glob.sync("src/stories/**/*.twee");
 
 console.log(`Building stories with ${format}...\n`);
+fs.rmSync("dist", { recursive: true, force: true });
 
 for (const file of files) {
   const target = file.replace("src/stories/", "dist/").replace(".twee", ".html");
